@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
-const usuariosController = require('../controllers/usuariosController')
+const usuariosController = require('../controllers/usuariosController');
+const validarCadastro = require("../middlewares/ValidarCadastro")
 
 // GET users
 router.get('/', usuariosController.index);
 // POST users
-router.post('/', usuariosController.create);
+router.post('/', validarCadastro, usuariosController.create);
 // UPDATE users
-router.put('/:id', usuariosController.update);
+router.put('/:id', validarCadastro, usuariosController.update);
 // DELETE users
 router.delete('/:id', usuariosController.delete);
 
